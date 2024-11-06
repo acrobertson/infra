@@ -10,6 +10,14 @@
     };
   };
 
+  programs.fzf = {
+    enable = true;
+    defaultCommand = "rg --files --hidden --glob '!.git/*'";
+    tmux = {
+      enableShellIntegration = true;
+    };
+  };
+
   programs.nushell = {
     enable = true;
   };
@@ -101,5 +109,16 @@
     syntaxHighlighting = {
       enable = true;
     };
+    initExtra = ''
+      # Find project file with fzf and open it in nvim
+      nf() {
+        nvim $(fzf --preview "bat --color 'always' {}")
+      }
+
+      # Find tmux session with fzf and attach to it
+      tf() {
+        tmux attach -t "$(tmux ls -F '#{session_name}' | fzf)"
+      }
+    '';
   };
 }
