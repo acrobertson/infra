@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   # add home-manager user settings here
-  home.packages = with pkgs; [fastfetch fd git htop jq neovim pandoc ripgrep sd tldr wget];
+  home.packages = with pkgs; [eza fastfetch fd git htop jq neovim pandoc ripgrep sd tldr wget];
   home.stateVersion = "23.11";
 
   programs.bat = {
@@ -127,6 +127,10 @@
       # Open all merge conflicts or currently changed files in VS Code
       # TODO: add `nvim` equivalent
       fix = "git diff --name-only | uniq | xargs code";
+      # eza helpers
+      l = "eza -lah --icons=auto";
+      ll = "eza -lh --icons=auto";
+      lt = "eza -T --icons=auto --git-ignore";
     };
     syntaxHighlighting = {
       enable = true;
