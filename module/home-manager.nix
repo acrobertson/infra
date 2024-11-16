@@ -35,9 +35,6 @@
       prompt = "#AD8301";
     };
     defaultCommand = "rg --files --hidden --glob '!.git/*'";
-    tmux = {
-      enableShellIntegration = true;
-    };
   };
 
   programs.nushell = {
