@@ -10,19 +10,22 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = inputs @ {
-    self,
-    darwin,
-    home-manager,
-    nixpkgs,
-    ...
-  }: let
-    darwin-system = import ./system/darwin.nix {inherit inputs username;};
-    username = "alecrobertson";
-  in {
-    darwinConfigurations = {
-      aarch64 = darwin-system "aarch64-darwin";
-      x86_64 = darwin-system "x86_64-darwin";
+  outputs =
+    inputs@{
+      self,
+      darwin,
+      home-manager,
+      nixpkgs,
+      ...
+    }:
+    let
+      darwin-system = import ./system/darwin.nix { inherit inputs username; };
+      username = "alecrobertson";
+    in
+    {
+      darwinConfigurations = {
+        aarch64 = darwin-system "aarch64-darwin";
+        x86_64 = darwin-system "x86_64-darwin";
+      };
     };
-  };
 }

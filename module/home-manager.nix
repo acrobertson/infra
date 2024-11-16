@@ -1,6 +1,21 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # add home-manager user settings here
-  home.packages = with pkgs; [eza fastfetch fd git htop jq neovim nixfmt-rfc-style pandoc ripgrep sd tldr wget];
+  home.packages = with pkgs; [
+    eza
+    fastfetch
+    fd
+    git
+    htop
+    jq
+    neovim
+    nixfmt-rfc-style
+    pandoc
+    ripgrep
+    sd
+    tldr
+    wget
+  ];
   home.stateVersion = "23.11";
 
   programs.bat = {
@@ -110,7 +125,12 @@
     enableCompletion = true;
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "macos" "npm" "wp-cli"];
+      plugins = [
+        "git"
+        "macos"
+        "npm"
+        "wp-cli"
+      ];
       theme = "robbyrussell";
     };
     sessionVariables = {
