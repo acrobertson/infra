@@ -152,16 +152,6 @@
     syntaxHighlighting = {
       enable = true;
     };
-    initExtra = ''
-      # Find project file with fzf and open it in nvim
-      nf() {
-        nvim $(fzf --preview "bat --color 'always' {}")
-      }
-
-      # Find tmux session with fzf and attach to it
-      tf() {
-        tmux attach -t "$(tmux ls -F '#{session_name}' | fzf)"
-      }
-    '';
+    initExtra = builtins.readFile ../config/zsh/zshrc;
   };
 }
