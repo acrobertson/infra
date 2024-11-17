@@ -77,6 +77,9 @@
         format = "[$symbol$branch]($style) ";
         symbol = " ";
       };
+      nix_shell = {
+        format = "[$symbol$state( \($name\))]($style) ";
+      };
       nodejs = {
         format = "[$symbol($version )]($style)";
       };
