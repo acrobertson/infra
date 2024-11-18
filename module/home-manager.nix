@@ -2,6 +2,8 @@
 {
   # add home-manager user settings here
   home.packages = with pkgs; [
+    colima
+    docker
     eza
     fastfetch
     fd
