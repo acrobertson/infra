@@ -1,3 +1,4 @@
+{ inputs }:
 { pkgs, ... }:
 {
   # add home-manager user settings here
@@ -19,6 +20,13 @@
     wget
   ];
   home.stateVersion = "23.11";
+
+  imports = [ inputs._1password-shell-plugins.hmModules.default ];
+
+  programs._1password-shell-plugins = {
+    enable = true;
+    plugins = with pkgs; [ gh ];
+  };
 
   programs.bat = {
     enable = true;

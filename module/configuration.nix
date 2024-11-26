@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   # add more system settings here
   nix = {
@@ -14,6 +15,15 @@
       ];
       trusted-users = [ "@wheel" ];
       warn-dirty = false;
+    };
+  };
+  nixpkgs = {
+    config = {
+      allowUnfreePredicate =
+        pkg:
+        builtins.elem (lib.getName pkg) [
+          "1password-cli"
+        ];
     };
   };
   programs.zsh.enable = true;
