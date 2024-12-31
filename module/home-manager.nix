@@ -16,6 +16,7 @@
     pandoc
     ripgrep
     sd
+    shortcat
     tldr
     wget
   ];
