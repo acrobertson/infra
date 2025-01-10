@@ -2,7 +2,6 @@
   description = "Example kickstart Nix on macOS environment.";
 
   inputs = {
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     darwin = {
