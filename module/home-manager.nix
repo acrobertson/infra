@@ -129,6 +129,11 @@
     extraConfig = builtins.readFile ../config/tmux/tmux.conf;
   };
 
+  programs.yazi = {
+    enable = true;
+    shellWrapperName = "y";
+  };
+
   programs.zoxide = {
     enable = true;
   };
