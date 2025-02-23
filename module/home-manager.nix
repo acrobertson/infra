@@ -11,7 +11,6 @@
     git
     htop
     jq
-    neovim
     nixfmt-rfc-style
     pandoc
     ripgrep
@@ -22,7 +21,18 @@
   ];
   home.stateVersion = "23.11";
 
-  imports = [ inputs._1password-shell-plugins.hmModules.default ];
+  imports = [
+    inputs._1password-shell-plugins.hmModules.default
+    inputs.neovim-config.homeModule
+  ];
+
+  nvim = {
+    enable = true;
+    packageNames = [
+      "nvim" # default build
+      "nvim-test" # loads straight from lua, for testing config tweaks
+    ];
+  };
 
   programs._1password-shell-plugins = {
     enable = true;

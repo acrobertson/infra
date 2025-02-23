@@ -77,6 +77,43 @@
         "type": "github"
       }
     },
+    "neovim-config": {
+      "inputs": {
+        "nixCats": "nixCats",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "plugins-flexoki-nvim": "plugins-flexoki-nvim"
+      },
+      "locked": {
+        "lastModified": 1740288274,
+        "narHash": "sha256-t9ZMKiKzsU1r0uoO5n0k1U95V2U6ysc8vPTEKWEz3Kg=",
+        "owner": "acrobertson",
+        "repo": "neovim-config",
+        "rev": "5096aa457066b79a44873d9891fe3762b0ae08c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "acrobertson",
+        "repo": "neovim-config",
+        "type": "github"
+      }
+    },
+    "nixCats": {
+      "locked": {
+        "lastModified": 1738991100,
+        "narHash": "sha256-smTBsgrpagQrPWnOSq4wcz1Q1UJ4denBNPmBAJN2Ol4=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "54e2cc42dbefb9e152d9584794f5d8d94a20a534",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1716358718,
@@ -109,11 +146,28 @@
         "type": "github"
       }
     },
+    "plugins-flexoki-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733944859,
+        "narHash": "sha256-p94WbSWtD494N/zLqvGN3OdNmy8iv+b/SjSogEQ9bOA=",
+        "owner": "nuvic",
+        "repo": "flexoki-nvim",
+        "rev": "5b826df81b3701e50fdd820e450d0a03a3898a1a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nuvic",
+        "repo": "flexoki-nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "_1password-shell-plugins": "_1password-shell-plugins",
         "darwin": "darwin",
         "home-manager": "home-manager",
+        "neovim-config": "neovim-config",
         "nixpkgs": "nixpkgs_2"
       }
     },

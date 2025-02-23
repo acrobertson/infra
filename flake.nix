@@ -14,6 +14,11 @@
     };
 
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
+
+    neovim-config = {
+      url = "github:acrobertson/neovim-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
