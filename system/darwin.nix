@@ -12,7 +12,6 @@ inputs.darwin.lib.darwinSystem {
   # modules: allows for reusable code
   modules = [
     {
-      services.nix-daemon.enable = true;
       users.users.${username}.home = "/Users/${username}";
     }
     system-config
