@@ -51,6 +51,10 @@
     nix-direnv.enable = true;
   };
 
+  programs.fish = {
+    enable = true;
+  };
+
   programs.fzf = {
     enable = true;
     # Flexoki theme

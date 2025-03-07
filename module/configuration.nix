@@ -21,6 +21,7 @@
       warn-dirty = false;
     };
   };
+
   nixpkgs = {
     config = {
       allowUnfreePredicate =
@@ -31,7 +32,10 @@
         ];
     };
   };
+
+  programs.fish.enable = true;
   programs.zsh.enable = true;
+
   system = {
     stateVersion = 5;
   };
