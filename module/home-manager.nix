@@ -246,7 +246,6 @@
     historyLimit = 5000;
     mouse = true;
     plugins = with pkgs; [
-      tmuxPlugins.pain-control
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.resurrect
       {
