@@ -53,6 +53,38 @@
 
   programs.fish = {
     enable = true;
+    functions = {
+      multicd = {
+        description = "Transform `..` into `cd ../`, `...` into `cd ../../`, etc.";
+        body =
+          # fish
+          ''
+            echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+          '';
+      };
+    };
+    shellAbbrs = {
+      # cd
+      dotdot = {
+        regex = ''^\.\.+$'';
+        function = "multicd";
+      };
+      # Git
+      g = "git";
+      gco = "git checkout";
+      gl = "git pull";
+      glr = "git pull --rebase";
+      gp = "git push";
+      gpf = "git push --force-with-lease";
+      grb = "git rebase";
+      grs = "git restore";
+      gst = "git status";
+      gsw = "git switch";
+      # Eza
+      l = "eza -lah --icons=auto";
+      ll = "eza -lh --icons=auto";
+      lt = "eza -T --icons=auto --git-ignore";
+    };
   };
 
   programs.fzf = {
