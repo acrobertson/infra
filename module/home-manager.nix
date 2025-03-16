@@ -75,12 +75,15 @@
       };
       # Git
       g = "git";
-      gco = "git checkout";
+      ga = "git add";
+      gap = "git add -p";
+      gc = "git commit";
       gl = "git pull";
       glr = "git pull --rebase";
       gp = "git push";
       gpf = "git push --force-with-lease";
       grb = "git rebase";
+      grbi = "git rebase --interactive";
       grs = "git restore";
       gst = "git status";
       gsw = "git switch";
