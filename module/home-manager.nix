@@ -1,7 +1,13 @@
 { inputs }:
 { pkgs, ... }:
 {
-  # add home-manager user settings here
+  imports = [
+    inputs._1password-shell-plugins.hmModules.default
+    inputs.neovim-config.homeModule
+  ];
+
+  home.stateVersion = "23.11";
+
   home.packages = with pkgs; [
     colima
     docker
@@ -18,12 +24,7 @@
     tldr
     wget
   ];
-  home.stateVersion = "23.11";
 
-  imports = [
-    inputs._1password-shell-plugins.hmModules.default
-    inputs.neovim-config.homeModule
-  ];
 
   nvim = {
     enable = true;
