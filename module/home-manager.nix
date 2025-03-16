@@ -25,6 +25,10 @@
     wget
   ];
 
+  home.sessionVariables = {
+    EDITOR = "nvim -e";
+    VISUAL = "nvim";
+  };
 
   nvim = {
     enable = true;
@@ -277,10 +281,6 @@
         "wp-cli"
       ];
       theme = "robbyrussell";
-    };
-    sessionVariables = {
-      EDITOR = "vi -e";
-      VISUAL = "nvim";
     };
     shellAliases = {
       # Changed your .gitignore _after_ you have added / committed some files?
