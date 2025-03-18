@@ -38,5 +38,17 @@
 
   system = {
     stateVersion = 5;
+    defaults = {
+      # Mouse tracking speed: Fast
+      ".GlobalPreferences"."com.apple.mouse.scaling" = 3.0;
+      # Trackpad tracking speed: Fast
+      NSGlobalDomain."com.apple.trackpad.scaling" = 3.0;
+      # Delay until key repeat: Short
+      NSGlobalDomain.InitialKeyRepeat = 15;
+      # Key repeat rate: Fast
+      NSGlobalDomain.KeyRepeat = 2;
+      # Automatically hide and show the dock
+      dock.autohide = true;
+    };
   };
 }
