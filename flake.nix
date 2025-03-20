@@ -8,9 +8,16 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-darwin.follows = "darwin";
     };
 
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
