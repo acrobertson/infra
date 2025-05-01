@@ -5,7 +5,7 @@
 system:
 let
   system-config = import ../module/configuration.nix;
-  home-manager-config = import ../module/home-manager.nix { inherit inputs; };
+  home-manager-config = import ../module/home-manager;
 in
 inputs.darwin.lib.darwinSystem {
   inherit system;
@@ -18,6 +18,9 @@ inputs.darwin.lib.darwinSystem {
 
     inputs.home-manager.darwinModules.home-manager
     {
+      home-manager.extraSpecialArgs = {
+        inherit inputs;
+      };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users."${username}" = home-manager-config;
