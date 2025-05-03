@@ -32,6 +32,7 @@
     jq
     nixfmt-rfc-style
     pandoc
+    raycast
     ripgrep
     sd
     shortcat
