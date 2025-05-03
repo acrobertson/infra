@@ -36,6 +36,8 @@
   programs.fish.enable = true;
   programs.zsh.enable = true;
 
+  # TODO: enable karabiner service
+
   system = {
     stateVersion = 5;
     defaults = {

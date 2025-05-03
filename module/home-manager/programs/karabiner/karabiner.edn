@@ -1,0 +1,68 @@
+;; edn spec https://github.com/edn-format/edn
+{:profiles
+ {:Default {:default true
+            ;; simultaneous key press threshold
+            ;; simlayer is implemented with to_if_alone and simultaneous key press feature
+            :sim     250
+            ;; to_delayed_action_delay_milliseconds
+            ;; checkout karabiner's documentation
+            ;; https://pqrs.org/osx/karabiner/json.html
+            ;; basically it means time after which the key press is count delayed
+            :delay   500
+            ;; https://pqrs.org/osx/karabiner/json.html#to-if-alone
+            ;; to_if_alone_timeout_milliseconds
+            ;; affects to_if_alone behavior
+            ;; simlayer is implemented with to_if_alone and simultaneous key press feature
+            :alone   1000
+            ;; to_if_held_down_threshold_milliseconds
+            ;; check the doc, I don't know what does this mean.
+            ;; maybe press this many milliseconds counts a "held" ?
+            :held    500}}
+
+ ;; define devices
+ :devices {:built_in_kbd [{:vendor_id 1452 :product_id 835}]}
+
+ ;; define tos
+ ;; use in <to>
+ :tos {:left_paren {:key :9 :modi [:left_shift] :lazy true}
+       :right_paren {:key :0 :modi [:left_shift] :lazy true}}
+
+ ;; main list
+ :main
+ ;; [<from> <to>] or
+ ;; [<from> <to> <conditions>] or
+ ;; [<from> <to> <conditions> <other options>]
+ ;; <from> can be keywords defined in froms or keycodes without `{:not-from true}`
+ ;; <to> can be keywords defined in tos, keycodes without `{:not-to true}`, string (shell script)
+ ;; <conditions> can be keywords defined in layers, devices, applications
+ ;; <other options> {:other {:parameters {:to_delayed_action_delay_milliseconds 100 :basic.to_if_alone_timeout_milliseconds 500 :basic.to_if_held_down_threshold_milliseconds 250}} }
+ [{:des "hold caps lock for hyper key"
+   :rules [[:caps_lock :!CTOleft_shift [:built_in_kbd] {:alone :caps_lock}]]}
+
+  {:des "hold backslash for meh key"
+   :rules [[:backslash :!TOleft_shift [:built_in_kbd] {:alone :backslash}]]}
+
+  {:des "space cadet shift"
+   :rules [[:left_shift :left_shift [:built_in_kbd] {:alone :left_paren}]
+           [:right_shift :right_shift [:built_in_kbd] {:alone :right_paren}]]}
+
+  {:des "space cadet ctrl"
+   :rules [[:z :left_control [:built_in_kbd] {:alone :z}]
+           [:slash :right_control [:built_in_kbd] {:alone :slash}]]}]
+
+ ;; code won't read cheatsheet section
+ ;; ! stand for mandatory
+ ;; # stand for optional
+ ;; C T O S for left command control optional shift
+ ;; F for fn
+ ;; need to prefix C T O S F with ! or #
+ :cheatsheet {:!Ca "command a" ;; mandatory left_command
+              :!Ta "control a" ;; mandatory left_control
+              :!Oa "option a"
+              :!Sa "shift a"
+              :#Sa "shift a" ;; keycode a, optional left_shift
+              :!CTOa "command control option a"
+              :!Cspacebar "command space"
+              :!Fa "fn a"
+              :##a "keycode a optional any"
+              :!!a "mandatory hyper(control command option shift) a "}}

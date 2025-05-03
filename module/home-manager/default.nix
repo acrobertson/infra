@@ -9,6 +9,7 @@
     ./programs/fzf
     ./programs/gh
     ./programs/git
+    ./programs/karabiner
     ./programs/nushell
     ./programs/nvim
     ./programs/starship
