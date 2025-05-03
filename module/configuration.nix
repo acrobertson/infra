@@ -39,6 +39,17 @@
 
   # TODO: enable karabiner service
 
+  homebrew = {
+    enable = true;
+    casks = [
+      "figma"
+      "ghostty"
+      "karabiner-elements"
+      "polypane"
+      "slack"
+    ];
+  };
+
   system = {
     stateVersion = 5;
     defaults = {
