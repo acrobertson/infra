@@ -12,6 +12,7 @@
     ./programs/nushell
     ./programs/nvim
     ./programs/starship
+    ./programs/taskwarrior
     ./programs/tmux
     ./programs/yazi
     ./programs/zoxide
@@ -33,6 +34,7 @@
     ripgrep
     sd
     shortcat
+    timewarrior
     tldr
     wget
   ];
