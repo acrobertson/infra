@@ -12,6 +12,7 @@ inputs.darwin.lib.darwinSystem {
   # modules: allows for reusable code
   modules = [
     {
+      system.primaryUser = username;
       users.users.${username}.home = "/Users/${username}";
     }
     system-config
