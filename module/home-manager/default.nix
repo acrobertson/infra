@@ -43,7 +43,7 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim -e";
+    EDITOR = "nvim";
     VISUAL = "nvim";
   };
 }
