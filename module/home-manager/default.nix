@@ -25,6 +25,7 @@
   home.packages = with pkgs; [
     colima
     docker
+    docker-credential-helpers
     eza
     fastfetch
     fd
