@@ -29,6 +29,7 @@
     eza
     fastfetch
     fd
+    ffmpeg
     htop
     jq
     nixfmt-rfc-style
