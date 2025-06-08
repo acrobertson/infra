@@ -33,6 +33,7 @@
     htop
     jq
     nixfmt-rfc-style
+    nodejs
     pandoc
     raycast
     ripgrep
