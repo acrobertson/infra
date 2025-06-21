@@ -32,6 +32,7 @@
     ffmpeg
     htop
     jq
+    nh
     nixfmt-rfc-style
     nodejs
     pandoc
