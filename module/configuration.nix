@@ -42,6 +42,7 @@
   homebrew = {
     enable = true;
     casks = [
+      "eloston-chromium"
       "figma"
       "ghostty"
       "karabiner-elements"
