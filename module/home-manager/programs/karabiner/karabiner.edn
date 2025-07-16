@@ -3,21 +3,21 @@
  {:Default {:default true
             ;; simultaneous key press threshold
             ;; simlayer is implemented with to_if_alone and simultaneous key press feature
-            :sim     250
+            :sim 250
             ;; to_delayed_action_delay_milliseconds
             ;; checkout karabiner's documentation
             ;; https://pqrs.org/osx/karabiner/json.html
             ;; basically it means time after which the key press is count delayed
-            :delay   500
+            :delay 500
             ;; https://pqrs.org/osx/karabiner/json.html#to-if-alone
             ;; to_if_alone_timeout_milliseconds
             ;; affects to_if_alone behavior
             ;; simlayer is implemented with to_if_alone and simultaneous key press feature
-            :alone   1000
+            :alone 1000
             ;; to_if_held_down_threshold_milliseconds
             ;; check the doc, I don't know what does this mean.
             ;; maybe press this many milliseconds counts a "held" ?
-            :held    500}}
+            :held 500}}
 
  ;; define devices
  :devices {:built_in_kbd [{:vendor_id 1452 :product_id 835}]}
