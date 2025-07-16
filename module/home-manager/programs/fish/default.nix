@@ -13,6 +13,14 @@
             echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
           '';
       };
+      nf = {
+        description = "Fuzzy find file and open with nvim";
+        body =
+          # fish
+          ''
+            nvim $(fzf --preview "bat --color 'always' {}")
+          '';
+      };
     };
 
     shellAbbrs = {
