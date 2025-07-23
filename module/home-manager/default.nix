@@ -4,6 +4,7 @@
   imports = [
     ./programs/_1password-shell-plugins
     ./programs/bat
+    ./programs/carapace
     ./programs/direnv
     ./programs/fish
     ./programs/fzf
@@ -48,5 +49,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
+    CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense,carapace";
   };
 }
