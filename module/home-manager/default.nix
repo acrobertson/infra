@@ -24,6 +24,7 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
+    btop
     colima
     docker
     docker-credential-helpers
@@ -31,7 +32,6 @@
     fastfetch
     fd
     ffmpeg
-    htop
     jq
     nh
     nixfmt-rfc-style
