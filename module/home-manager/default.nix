@@ -34,7 +34,7 @@
     ffmpeg
     jq
     nh
-    nixfmt-rfc-style
+    nixfmt
     nodejs
     pandoc
     raycast
