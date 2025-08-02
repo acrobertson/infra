@@ -11,6 +11,7 @@
     ./programs/gh
     ./programs/git
     ./programs/karabiner
+    ./programs/nh
     ./programs/nushell
     ./programs/nvim
     ./programs/starship
@@ -33,7 +34,6 @@
     fd
     ffmpeg
     jq
-    nh
     nixfmt
     nodejs
     pandoc
