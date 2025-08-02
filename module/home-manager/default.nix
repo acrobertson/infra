@@ -27,6 +27,7 @@
   home.packages = with pkgs; [
     btop
     colima
+    curl
     docker
     docker-credential-helpers
     eza
