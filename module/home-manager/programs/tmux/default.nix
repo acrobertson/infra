@@ -12,6 +12,7 @@
     shell = "${pkgs.fish}${pkgs.fish.shellPath}";
 
     plugins = with pkgs; [
+      tmuxPlugins.fingers
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.resurrect
       {
