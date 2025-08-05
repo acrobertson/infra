@@ -9,6 +9,8 @@
     historyLimit = 5000;
     mouse = true;
 
+    shell = "${pkgs.fish}${pkgs.fish.shellPath}";
+
     plugins = with pkgs; [
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.resurrect
