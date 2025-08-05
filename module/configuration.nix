@@ -43,7 +43,6 @@
     enable = true;
     casks = [
       "figma"
-      "ghostty"
       "karabiner-elements"
       "polypane"
       "slack"

@@ -9,6 +9,7 @@
     ./programs/fish
     ./programs/fzf
     ./programs/gh
+    ./programs/ghostty
     ./programs/git
     ./programs/karabiner
     ./programs/nh
