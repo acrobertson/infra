@@ -1,5 +1,5 @@
 {
-  description = "Example kickstart Nix on macOS environment.";
+  description = "Configs for my machines";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -37,13 +37,53 @@
       ...
     }:
     let
-      darwin-system = import ./system/darwin.nix { inherit inputs username; };
-      username = "alecrobertson";
+      inherit (self) outputs;
+
+      users = {
+        alecrobertson = {
+          name = "alecrobertson";
+          fullName = "Alec Robertson";
+          email = "alec.robertson08@gmail.com";
+        };
+      };
+
+      mkDarwinConfiguration =
+        hostname: username:
+        darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+            darwinModules = "${self}/modules/darwin";
+          };
+          modules = [
+            ./hosts/${hostname}
+            inputs.nix-homebrew.darwinModules.nix-homebrew
+            home-manager.darwinModules.home-manager
+          ];
+        };
+
+      mkHomeConfiguration =
+        system: username: hostname:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          extraSpecialArgs = {
+            inherit inputs outputs;
+            userConfig = users.${username};
+            homeModules = "${self}/modules/home-manager";
+          };
+          modules = [
+            ./home/${username}/${hostname}
+          ];
+        };
     in
     {
       darwinConfigurations = {
-        aarch64 = darwin-system "aarch64-darwin";
-        x86_64 = darwin-system "x86_64-darwin";
+        "pequod" = mkDarwinConfiguration "pequod" "alecrobertson";
+      };
+
+      homeConfigurations = {
+        "alecrobertson@pequod" = mkHomeConfiguration "aarch64-darwin" "alecrobertson" "pequod";
       };
     };
 }

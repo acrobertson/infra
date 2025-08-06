@@ -1,4 +1,9 @@
-{ lib, ... }:
+{
+  lib,
+  userConfig,
+  ...
+}:
+
 {
   # add more system settings here
   nix = {
@@ -22,23 +27,6 @@
     };
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfreePredicate =
-        pkg:
-        builtins.elem (lib.getName pkg) [
-          "1password-cli"
-          "raycast"
-          "shortcat"
-        ];
-    };
-  };
-
-  programs.fish.enable = true;
-  programs.zsh.enable = true;
-
-  # TODO: enable karabiner service
-
   homebrew = {
     enable = true;
     casks = [
@@ -50,12 +38,16 @@
     ];
   };
 
+  programs.fish.enable = true;
+  programs.zsh.enable = true;
+
+  # TODO: enable karabiner service
+
   security = {
     pam.services.sudo_local.touchIdAuth = true;
   };
 
   system = {
-    stateVersion = 5;
     defaults = {
       # Mouse tracking speed: Fast
       ".GlobalPreferences"."com.apple.mouse.scaling" = 3.0;
@@ -68,6 +60,12 @@
       # Automatically hide and show the dock
       dock.autohide = true;
     };
+
+    primaryUser = userConfig.name;
   };
 
+  users.users.${userConfig.name} = {
+    name = "${userConfig.name}";
+    home = "/Users/${userConfig.name}";
+  };
 }
