@@ -27,6 +27,16 @@
     };
   };
 
+  nixpkgs = {
+    config = {
+      allowUnfreePredicate =
+        pkg:
+        builtins.elem (lib.getName pkg) [
+          "1password"
+        ];
+    };
+  };
+
   homebrew = {
     enable = true;
     casks = [
@@ -38,6 +48,7 @@
     ];
   };
 
+  programs._1password-gui.enable = true;
   programs.fish.enable = true;
   programs.zsh.enable = true;
 
