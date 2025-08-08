@@ -25,7 +25,6 @@
     ../programs/tmux
     ../programs/yazi
     ../programs/zoxide
-    ../programs/zsh
   ];
 
   nixpkgs = {
