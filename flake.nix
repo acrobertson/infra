@@ -59,6 +59,14 @@
           modules = [
             ./hosts/${hostname}
             inputs.nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                enable = true;
+                enableRosetta = true;
+                user = username;
+                autoMigrate = true;
+              };
+            }
             home-manager.darwinModules.home-manager
           ];
         };
