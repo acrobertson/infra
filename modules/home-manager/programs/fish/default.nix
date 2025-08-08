@@ -13,12 +13,22 @@
             echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
           '';
       };
+
       nf = {
         description = "Fuzzy find file and open with nvim";
         body =
           # fish
           ''
             nvim $(fzf --preview "bat --color 'always' {}")
+          '';
+      };
+
+      tf = {
+        description = "Fuzzy find tmux session and attach to it";
+        body =
+          # fish
+          ''
+            tmux attach -t "$(tmux ls -F '#{session_name}' | fzf)"
           '';
       };
     };
@@ -29,6 +39,7 @@
         regex = ''^\.\.+$'';
         function = "multicd";
       };
+
       # Git
       g = "git";
       ga = "git add";
@@ -43,6 +54,7 @@
       grs = "git restore";
       gst = "git status";
       gsw = "git switch";
+
       # Eza
       l = "eza -lah --icons=auto";
       ll = "eza -lh --icons=auto";
