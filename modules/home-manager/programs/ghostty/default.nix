@@ -4,7 +4,7 @@
   programs.ghostty = {
     enable = true;
 
-    package = pkgs.ghostty-bin;
+    package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
 
     settings = {
       command = "${pkgs.fish}${pkgs.fish.shellPath} --login --interactive";
