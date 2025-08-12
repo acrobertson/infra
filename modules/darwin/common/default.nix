@@ -39,6 +39,9 @@
 
   homebrew = {
     enable = true;
+    brews = [
+      "displayplacer"
+    ];
     casks = [
       "figma"
       "karabiner-elements"
