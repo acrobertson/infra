@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +37,7 @@
     inputs@{
       self,
       darwin,
+      nixos-wsl,
       home-manager,
       nixpkgs,
       ...
@@ -71,6 +77,28 @@
           ];
         };
 
+      mkWslConfiguration =
+        hostname: username:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+            wslModules = "${self}/modules/wsl";
+          };
+          modules = [
+            ./hosts/${hostname}
+            nixos-wsl.nixosModules.default
+            {
+              wsl = {
+                enable = true;
+                defaultUser = username;
+                startMenuLaunchers = true;
+              };
+            }
+          ];
+        };
+
       mkHomeConfiguration =
         system: username: hostname:
         home-manager.lib.homeManagerConfiguration {
@@ -88,6 +116,10 @@
     {
       darwinConfigurations = {
         "pequod" = mkDarwinConfiguration "pequod" "alecrobertson";
+      };
+
+      nixosConfigurations = {
+        "hodor" = mkWslConfiguration "hodor" "alecrobertson";
       };
 
       homeConfigurations = {
