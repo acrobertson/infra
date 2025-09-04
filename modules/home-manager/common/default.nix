@@ -10,6 +10,7 @@
     ../programs/_1password-shell-plugins
     ../programs/bat
     ../programs/carapace
+    ../programs/chromium
     ../programs/direnv
     ../programs/fish
     ../programs/fzf
