@@ -7,6 +7,7 @@
     package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
 
     settings = {
+      auto-update = "off";
       command = "${pkgs.fish}${pkgs.fish.shellPath} --login --interactive";
       font-family = "Berkeley Mono";
       font-size = 14;
