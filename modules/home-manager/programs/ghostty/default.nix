@@ -14,7 +14,7 @@
       keybind = [
         "global:ctrl+alt+shift+cmd+q=toggle_quick_terminal"
       ];
-      theme = "dark:flexoki-dark,light:flexoki-light";
+      theme = "dark:Flexoki Dark,light:Flexoki Light";
     };
   };
 }
