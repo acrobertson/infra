@@ -102,11 +102,11 @@
         "plugins-ts-error-translator-nvim": "plugins-ts-error-translator-nvim"
       },
       "locked": {
-        "lastModified": 1760366675,
-        "narHash": "sha256-P3Pi0Ht56DGSLUAPyFYoL1U3lDB/fiY1Ez7kZDjawdg=",
+        "lastModified": 1760371416,
+        "narHash": "sha256-na/+Df0anrUUCyuDoHTtdguHEGG7K5SlMt13KbBdv7g=",
         "owner": "acrobertson",
         "repo": "neovim-config",
-        "rev": "b8828f8ed3a50da5bddd74f0aaf6e33b3abbad62",
+        "rev": "725007faf09fc5766a9953a7e460573b498033ec",
         "type": "github"
       },
       "original": {
