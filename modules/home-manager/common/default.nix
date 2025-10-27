@@ -11,6 +11,7 @@
     ../programs/bat
     ../programs/carapace
     ../programs/chromium
+    ../programs/delta
     ../programs/direnv
     ../programs/fish
     ../programs/fzf

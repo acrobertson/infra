@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760338583,
-        "narHash": "sha256-IGwy02SH5K2hzIFrKMRsCmyvwOwWxrcquiv4DbKL1S4=",
+        "lastModified": 1761339987,
+        "narHash": "sha256-IUaawVwItZKi64IA6kF6wQCLCzpXbk2R46dHn8sHkig=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "9a9ab01072f78823ca627ae5e895e40d493c3ecf",
+        "rev": "7cd9aac79ee2924a85c211d21fafd394b06a38de",
         "type": "github"
       },
       "original": {
@@ -79,11 +79,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760312644,
-        "narHash": "sha256-U9SkK45314urw9P7MmjhEgiQwwD/BTj+T3HTuz1JU1Q=",
+        "lastModified": 1761530345,
+        "narHash": "sha256-+9+YCK9Lh6GThkXu/8JTxMFUnImIdZpb8ElUh6/F5Y8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e121f3773fa596ecaba5b22e518936a632d72a90",
+        "rev": "bbaeb9f1c29e79bb1653b32c3d73244cdf4bd888",
         "type": "github"
       },
       "original": {
@@ -98,15 +98,14 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "plugins-flexoki-nvim": "plugins-flexoki-nvim",
         "plugins-ts-error-translator-nvim": "plugins-ts-error-translator-nvim"
       },
       "locked": {
-        "lastModified": 1760371416,
-        "narHash": "sha256-na/+Df0anrUUCyuDoHTtdguHEGG7K5SlMt13KbBdv7g=",
+        "lastModified": 1761366421,
+        "narHash": "sha256-aewfcP2BT4k49I6viNh8tkmCWPQDO/NIReYVPuRM9Vg=",
         "owner": "acrobertson",
         "repo": "neovim-config",
-        "rev": "725007faf09fc5766a9953a7e460573b498033ec",
+        "rev": "08d53ee3b51072c79a7a24bcf33a52383271dd2c",
         "type": "github"
       },
       "original": {
@@ -156,11 +155,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759833546,
-        "narHash": "sha256-rOfkgIiiZNPUbf61OqEym60wXEODeDG8XH+gV/SUoUc=",
+        "lastModified": 1761450649,
+        "narHash": "sha256-l20QOQZYjmGq3PK0gZ8NJOi3GMKjLd6iwwk54MKwkbk=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "7c0c0f4c3a51761434f18209fa9499b8579ff730",
+        "rev": "86f85079c8d896b1903c70a919fa3d43c92d6f7f",
         "type": "github"
       },
       "original": {
@@ -188,33 +187,17 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1760038930,
-        "narHash": "sha256-Oncbh0UmHjSlxO7ErQDM3KM0A5/Znfofj2BSzlHLeVw=",
+        "lastModified": 1761373498,
+        "narHash": "sha256-Q/uhWNvd7V7k1H1ZPMy/vkx3F8C13ZcdrKjO7Jv7v0c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0b4defa2584313f3b781240b29d61f6f9f7e0df3",
+        "rev": "6a08e6bb4e46ff7fcbb53d409b253f6bad8a28ce",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "plugins-flexoki-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1743635018,
-        "narHash": "sha256-vjjAulQVFS+OmpWzLkliqpan3GXlvatdaCnI96bjxC0=",
-        "owner": "nuvic",
-        "repo": "flexoki-nvim",
-        "rev": "079554c242a86be5d1a95598c7c6368d6eedd7a3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nuvic",
-        "repo": "flexoki-nvim",
         "type": "github"
       }
     },

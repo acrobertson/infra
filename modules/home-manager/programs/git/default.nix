@@ -12,10 +12,7 @@
       signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
     };
 
-    userEmail = "alec.robertson08@gmail.com";
-    userName = "Alec Robertson";
-
-    extraConfig = {
+    settings = {
       add = {
         interactive.useBuiltin = false;
       };
@@ -71,13 +68,9 @@
       tag = {
         sort = "version:refname";
       };
-    };
-
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        line-numbers = true;
+      user = {
+        email = "alec.robertson08@gmail.com";
+        name = "Alec Robertson";
       };
     };
   };
