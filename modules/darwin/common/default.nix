@@ -43,6 +43,7 @@
       "displayplacer"
     ];
     casks = [
+      "asimov"
       "figma"
       "karabiner-elements"
       "polypane"
