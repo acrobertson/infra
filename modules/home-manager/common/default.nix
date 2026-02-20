@@ -61,6 +61,7 @@
       nodejs
       pandoc
       ripgrep
+      rsync
       sd
       timewarrior
       tldr
