@@ -8,6 +8,7 @@
     escapeTime = 0;
     historyLimit = 5000;
     mouse = true;
+    shortcut = "a";
 
     shell = "${pkgs.fish}${pkgs.fish.shellPath}";
 
