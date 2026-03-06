@@ -35,6 +35,7 @@
         pkg:
         builtins.elem (lib.getName pkg) [
           "1password-cli"
+          "keymapp"
           "raycast"
           "shortcat"
         ];
@@ -71,6 +72,7 @@
       colima
       docker
       docker-credential-helpers
+      keymapp
       raycast
       shortcat
     ];
