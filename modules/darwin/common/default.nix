@@ -40,10 +40,10 @@
   homebrew = {
     enable = true;
     brews = [
+      "asimov"
       "displayplacer"
     ];
     casks = [
-      "asimov"
       "figma"
       "karabiner-elements"
       "polypane"
