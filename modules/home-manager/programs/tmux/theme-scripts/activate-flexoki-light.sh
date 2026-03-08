@@ -1,0 +1,90 @@
+#!/usr/bin/env sh
+
+# Name: Flexoki
+# Variant: Light
+# URL: https://stephango.com/flexoki
+# Description: An inky color scheme for prose and code.
+# Note: Color hexes in lower case to avoid tmux flag confusion
+
+flexoki_black="#100f0f"
+flexoki_base_950="#1c1b1a"
+flexoki_base_900="#282726"
+flexoki_base_850="#343331"
+flexoki_base_800="#403e3c"
+flexoki_base_700="#575653"
+flexoki_base_600="#6f6e69"
+flexoki_base_500="#878580"
+flexoki_base_300="#b7b5ac"
+flexoki_base_200="#cecdc3"
+flexoki_base_150="#dad8ce"
+flexoki_base_100="#e6e4d9"
+flexoki_base_50="#f2f0e5"
+flexoki_paper="#fffcf0"
+
+flexoki_red="#d14d41"
+flexoki_orange="#da702c"
+flexoki_yellow="#d0a215"
+flexoki_green="#879a39"
+flexoki_cyan="#3aa99f"
+flexoki_blue="#4385be"
+flexoki_purple="#8b7ec8"
+flexoki_magenta="#ce5d97"
+
+flexoki_red_2="#af3029"
+flexoki_orange_2="#bc5215"
+flexoki_yellow_2="#ad8301"
+flexoki_green_2="#66800b"
+flexoki_cyan_2="#24837b"
+flexoki_blue_2="#205ea6"
+flexoki_purple_2="#5e409d"
+flexoki_magenta_2="#a02f6f"
+
+color_tx_1=$flexoki_black
+color_tx_2=$flexoki_base_600
+color_tx_3=$flexoki_base_300
+color_bg_1=$flexoki_paper
+color_bg_2=$flexoki_base_50
+color_ui_1=$flexoki_base_100
+color_ui_2=$flexoki_base_150
+color_ui_3=$flexoki_base_200
+
+color_red=$flexoki_red
+color_orange=$flexoki_orange
+color_yellow=$flexoki_yellow
+color_green=$flexoki_green
+color_cyan=$flexoki_cyan
+color_blue=$flexoki_blue
+color_purple=$flexoki_purple
+color_magenta=$flexoki_magenta
+
+# status
+tmux set -g status "on"
+tmux set -g status-bg $color_bg_1
+tmux set -g status-justify "left"
+tmux set -g status-left-length "100"
+tmux set -g status-right-length "100"
+
+# messages
+tmux set -g message-style "fg=$color_cyan,bg=$color_tx_1,align=centre"
+tmux set -g message-command-style "fg=$color_cyan,bg=$color_ui_2,align=centre"
+
+# panes
+tmux set -g pane-border-style fg=$color_ui_2
+tmux set -g pane-active-border-style fg=$color_blue
+
+# windows
+tmux setw -g window-status-activity-style fg=$color_tx_1,bg=$color_bg_1,none
+tmux setw -g window-status-separator ""
+tmux setw -g window-status-style fg=$color_tx_1,bg=$color_bg_1,none
+
+# statusline
+tmux set -g status-left "#{?client_prefix,#[fg=#$color_bg_1#,bg=#$color_red],#[fg=#$color_bg_1#,bg=#$color_green]}  #S "
+tmux set -g status-right "#[fg=#$color_bg_1,bg=#$color_orange]  #{b:pane_current_path} #[fg=#$color_bg_1,bg=#$color_purple]  %Y-%m-%d %H:%M "
+
+# window-status
+tmux setw -g window-status-format "#[bg=#$color_bg_1,fg=#$color_tx_2] #I  #W "
+tmux setw -g window-status-current-format "#[bg=#$color_bg_2,fg=#$color_tx_1] #I  #W "
+
+# Modes
+tmux setw -g clock-mode-colour $color_blue
+tmux setw -g mode-style fg=$color_orange,bg=$color_tx_1,bold

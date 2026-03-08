@@ -30,4 +30,10 @@
 
     extraConfig = builtins.readFile ./tmux.conf;
   };
+
+  xdg.configFile."tmux/theme-scripts" = {
+    recursive = true;
+    source = ./theme-scripts;
+    executable = true;
+  };
 }
