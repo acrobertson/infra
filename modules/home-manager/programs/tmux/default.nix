@@ -7,6 +7,7 @@
     aggressiveResize = true;
     escapeTime = 0;
     historyLimit = 5000;
+    keyMode = "vi";
     mouse = true;
     shortcut = "a";
 
