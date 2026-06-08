@@ -4,6 +4,10 @@
   programs.git = {
     enable = true;
 
+    lfs = {
+      enable = true;
+    };
+
     signing = {
       format = "ssh";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIfvNCCpiGWrLTVyUAXulTNPIF7Rda3Y5iynk1dSxfBa";
