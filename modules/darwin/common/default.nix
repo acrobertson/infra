@@ -42,6 +42,7 @@
     brews = [
       "asimov"
       "displayplacer"
+      "mole"
     ];
     casks = [
       "figma"
