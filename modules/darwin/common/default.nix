@@ -46,6 +46,7 @@
     ];
     casks = [
       "figma"
+      "handy"
       "karabiner-elements"
       "polypane"
       "slack"
