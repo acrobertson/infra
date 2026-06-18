@@ -63,5 +63,9 @@
       ll = "eza -lh --icons=auto";
       lt = "eza -T --icons=auto --git-ignore";
     };
+
+    shellAliases = {
+      sail = "sh $([ -f sail ] && echo sail || echo vendor/bin/sail)";
+    };
   };
 }
