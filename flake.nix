@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
@@ -113,6 +114,8 @@
         };
     in
     {
+      overlays = import ./overlays { inherit inputs; };
+
       darwinConfigurations = {
         "pequod" = mkDarwinConfiguration "pequod" "alecrobertson";
       };
