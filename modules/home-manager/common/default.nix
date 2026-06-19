@@ -1,5 +1,6 @@
 {
   lib,
+  outputs,
   userConfig,
   pkgs,
   ...
@@ -40,6 +41,7 @@
           "shortcat"
         ];
     };
+    overlays = [ outputs.overlays.unstable-pkgs ];
   };
 
   home = {
@@ -70,6 +72,7 @@
     ]
     ++ lib.optionals stdenv.isDarwin [
       colima
+      unstable.container
       docker
       docker-credential-helpers
       keymapp
