@@ -28,6 +28,7 @@
     ../programs/tmux
     ../programs/yazi
     ../programs/zoxide
+    ../services/colima
   ];
 
   nixpkgs = {
@@ -71,7 +72,6 @@
       wget
     ]
     ++ lib.optionals stdenv.isDarwin [
-      colima
       unstable.container
       docker
       docker-credential-helpers
