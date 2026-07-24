@@ -12,6 +12,7 @@
     ../programs/bat
     ../programs/carapace
     ../programs/chromium
+    ../programs/claude-code
     ../programs/delta
     ../programs/direnv
     ../programs/fish
@@ -23,6 +24,7 @@
     ../programs/nh
     ../programs/nushell
     ../programs/nvim
+    ../programs/opencode
     ../programs/starship
     ../programs/taskwarrior
     ../programs/tmux
@@ -37,6 +39,7 @@
         pkg:
         builtins.elem (lib.getName pkg) [
           "1password-cli"
+          "claude-code"
           "keymapp"
           "raycast"
           "shortcat"
@@ -67,6 +70,7 @@
       ripgrep
       rsync
       sd
+      skills
       timewarrior
       tldr
       wget
