@@ -12,20 +12,22 @@
       shfmt
       uv
     ];
+    package = pkgs.unstable.opencode;
     settings = {
       formatter = true;
-      lsp = {
-        "intelephense" = {
-          disbled = true;
-        };
-        phpactor = {
-          command = [
-            "phpactor"
-            "language-server"
-          ];
-          extensions = [ ".php" ];
-        };
-      };
+      # lsp = {
+      #   "intelephense" = {
+      #     command = [ "intelephense" ];
+      #     disbled = true;
+      #   };
+      #   phpactor = {
+      #     command = [
+      #       "phpactor"
+      #       "language-server"
+      #     ];
+      #     extensions = [ ".php" ];
+      #   };
+      # };
       permission = {
         "*" = "ask";
         bash = {
