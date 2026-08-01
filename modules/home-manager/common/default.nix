@@ -58,6 +58,7 @@
     with pkgs;
     [
       btop
+      unstable.ccusage
       curl
       eza
       fastfetch
