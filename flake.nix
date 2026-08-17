@@ -2,6 +2,10 @@
   description = "Configs for my machines";
 
   inputs = {
+    den.url = "github:denful/den/v0.18.0";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:denful/import-tree";
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
@@ -34,98 +38,13 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      darwin,
-      nixos-wsl,
-      home-manager,
-      nixpkgs,
-      ...
-    }:
+    inputs:
     let
-      inherit (self) outputs;
-
-      users = {
-        alecrobertson = {
-          name = "alecrobertson";
-          fullName = "Alec Robertson";
-          email = "alec.robertson08@gmail.com";
-        };
+      outputs = inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+        imports = [
+          (inputs.import-tree ./modules)
+        ];
       };
-
-      mkDarwinConfiguration =
-        hostname: username:
-        darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          specialArgs = {
-            inherit inputs outputs hostname;
-            userConfig = users.${username};
-            darwinModules = "${self}/modules/darwin";
-          };
-          modules = [
-            ./hosts/${hostname}
-            inputs.nix-homebrew.darwinModules.nix-homebrew
-            {
-              nix-homebrew = {
-                enable = true;
-                enableRosetta = true;
-                user = username;
-                autoMigrate = true;
-              };
-            }
-            home-manager.darwinModules.home-manager
-          ];
-        };
-
-      mkWslConfiguration =
-        hostname: username:
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs outputs hostname;
-            userConfig = users.${username};
-            wslModules = "${self}/modules/wsl";
-          };
-          modules = [
-            ./hosts/${hostname}
-            nixos-wsl.nixosModules.default
-            {
-              wsl = {
-                enable = true;
-                defaultUser = username;
-                startMenuLaunchers = true;
-              };
-            }
-          ];
-        };
-
-      mkHomeConfiguration =
-        system: username: hostname:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
-          extraSpecialArgs = {
-            inherit inputs outputs;
-            userConfig = users.${username};
-            homeModules = "${self}/modules/home-manager";
-          };
-          modules = [
-            ./home/${username}/${hostname}
-          ];
-        };
     in
-    {
-      overlays = import ./overlays { inherit inputs; };
-
-      darwinConfigurations = {
-        "pequod" = mkDarwinConfiguration "pequod" "alecrobertson";
-      };
-
-      nixosConfigurations = {
-        "hodor" = mkWslConfiguration "hodor" "alecrobertson";
-      };
-
-      homeConfigurations = {
-        "alecrobertson@pequod" = mkHomeConfiguration "aarch64-darwin" "alecrobertson" "pequod";
-      };
-    };
+    builtins.removeAttrs outputs [ "denful" ];
 }
