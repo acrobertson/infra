@@ -22,6 +22,23 @@
           };
         };
 
+        home.packages = [ pkgs.unstable.herdr ];
+        xdg.configFile."herdr/config.toml".source = (pkgs.formats.toml { }).generate "herdr-config" {
+          experimental = {
+            kitty_graphics = true;
+          };
+          terminal = {
+            default_shell = "fish";
+          };
+          theme = {
+            name = "terminal";
+            auto_switch = true;
+          };
+          ui.toast = {
+            delivery = "herdr";
+          };
+        };
+
         programs.tmux = {
           enable = true;
 
