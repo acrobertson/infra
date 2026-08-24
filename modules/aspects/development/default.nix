@@ -27,15 +27,37 @@
           ];
 
           settings = {
+            # Disable unneeded features to trim system prompt
+            disableBundledSkills = true;
+            disableWorkflows = true;
+            disableRemoteControl = true;
+            disableArtifact = true;
+
             autoCompactEnabled = false;
             editorMode = "vim";
             effortLevel = "medium";
-            model = "claude-opus-4-8";
+            model = "claude-opus-5";
+            outputStyle = "Concise";
             permissions = {
               allow = [
                 "Read(./.env.example)"
               ];
               deny = [
+                # Deny unneeded builtin rules
+                "EnterPlanMode"
+                "ExitPlanMode"
+                "DesignSync"
+                "NotebookEdit"
+                "SendMessage"
+                "PushNotification"
+                "RemoteTrigger"
+                "ReportFindings"
+                "ScheduleWakeup"
+                "AskUserQuestion"
+                "CronCreate"
+                "CronDelete"
+                "CronList"
+                # Protect secrets
                 "Read(./.env)"
                 "Read(./.env.*)"
                 "Read(./secrets/**)"
