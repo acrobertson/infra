@@ -161,6 +161,7 @@
         };
 
         home.packages = with pkgs; [
+          agent-browser
           nixfmt
           nodejs
           pandoc
