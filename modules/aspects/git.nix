@@ -3,7 +3,12 @@
 {
   den.aspects.git = {
     homeManager =
-      { userConfig, pkgs, ... }:
+      {
+        lib,
+        userConfig,
+        pkgs,
+        ...
+      }:
       {
         programs.delta = {
           enable = true;
@@ -16,11 +21,10 @@
 
         programs.gh = {
           enable = true;
-          # Already installed the package with the 1Pass wrapper.
-          # Only want to use Home Manager to configure it.
-          # This ignores the duplicate package from HM.
+          # On macOS gh comes wrapped by the 1Password GUI install; only
+          # configure it here. Elsewhere install a real gh.
           # see https://github.com/nix-community/home-manager/issues/4763
-          package = pkgs.emptyDirectory;
+          package = if pkgs.stdenv.isDarwin then pkgs.emptyDirectory else pkgs.gh;
           settings = {
             git_protocol = "ssh";
           };
@@ -37,8 +41,9 @@
             format = "ssh";
             key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIfvNCCpiGWrLTVyUAXulTNPIF7Rda3Y5iynk1dSxfBa";
             signByDefault = true;
-            # TODO: integrate with GUI from nix?
-            signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+            # The 1Password GUI signer only exists on macOS; Linux hosts
+            # provide their own signer (see provides.hodor below).
+            signer = lib.mkIf pkgs.stdenv.isDarwin "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
           };
 
           settings = {
@@ -106,12 +111,14 @@
       };
 
     # Keep WSL-only Git transport and signing scoped to the Hodor-bound home.
+    # Signer path per 1Password's WSL docs (MSIX apps live under WindowsApps):
+    # https://www.1password.dev/ssh/integrations/wsl
     provides.hodor.homeManager =
-      { lib, ... }:
+      { ... }:
       {
         programs.git = {
           settings.core.sshCommand = "ssh.exe";
-          signing.signer = lib.mkForce "/mnt/c/Users/superbluesbros/AppData/Local/1Password/app/8/op-ssh-sign-wsl";
+          signing.signer = "/mnt/c/Users/superbluesbros/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe";
         };
       };
   };

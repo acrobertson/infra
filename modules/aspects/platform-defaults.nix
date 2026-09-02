@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 let
   nixSettings = {
@@ -24,7 +24,24 @@ let
 in
 {
   den.aspects.platform-defaults = {
-    darwin.nix = nixSettings;
+    darwin =
+      { pkgs, ... }:
+      {
+        # Durable local builder for aarch64-linux and Rosetta-translated
+        # x86_64-linux builds (ADR-0005). The VZ backend is not on the 26.05
+        # release line yet, so take it from the pinned unstable input.
+        nix = nixSettings // {
+          linux-builder = {
+            enable = true;
+            systems = [
+              "aarch64-linux"
+              "x86_64-linux"
+            ];
+            package = (pkgs.extend config.flake.overlays.unstable-pkgs).unstable.darwin.linux-builder-vz;
+          };
+        };
+      };
+
     nixos.nix = nixSettings;
   };
 }

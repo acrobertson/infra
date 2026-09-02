@@ -23,8 +23,10 @@
       {
         imports = [ inputs._1password-shell-plugins.hmModules.default ];
 
+        # Shell plugins drive the 1Password GUI/CLI app integration, which
+        # does not exist headless on Linux/WSL.
         programs._1password-shell-plugins = {
-          enable = true;
+          enable = pkgs.stdenv.isDarwin;
           plugins = with pkgs; [ gh ];
         };
 

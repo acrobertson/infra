@@ -34,7 +34,8 @@
           ]
         );
 
-        xdg.configFile."karabiner.edn" = {
+        # Karabiner is macOS-only; keep the config off Linux hosts entirely.
+        xdg.configFile."karabiner.edn" = lib.mkIf pkgs.stdenv.isDarwin {
           source = ./karabiner.edn;
           onChange = "${pkgs.goku}/bin/goku";
         };
