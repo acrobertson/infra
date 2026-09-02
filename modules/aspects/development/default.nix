@@ -13,6 +13,12 @@
           tag = "v1.1.0";
           hash = "sha256-XqF709Y9GMKINzZITlbCTyatG9AxRZh0qn2vcv1Z8yo=";
         };
+        ponytailPlugin = pkgs.fetchFromGitHub {
+          owner = "DietrichGebert";
+          repo = "ponytail";
+          tag = "v4.9.0";
+          hash = "sha256-8cYggVltBAlZ/Zj4pl1bOu7mQdZFXCmDGW4RSpvRA+w=";
+        };
       in
       {
         imports = [ inputs.neovim-config.homeModule ];
@@ -24,6 +30,7 @@
 
           plugins = [
             mattPocockSkillsPlugin
+            ponytailPlugin
           ];
 
           settings = {
