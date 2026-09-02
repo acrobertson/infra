@@ -48,6 +48,7 @@
             permissions = {
               allow = [
                 "Read(./.env.example)"
+                "Read(node_modules/next/dist/docs/**)"
               ];
               deny = [
                 # Deny unneeded builtin rules
