@@ -42,10 +42,14 @@
   # Ghostty is not viable under WSLg (ghostty-org/ghostty#11647); the WSL
   # terminal is Windows Terminal against the fish shell.
   den.aspects.alecrobertson.provides.hodor.homeManager =
-    { lib, ... }:
+    { lib, pkgs, ... }:
     {
       programs.home-manager.enable = true;
       programs.ghostty.enable = lib.mkForce false;
+
+      # ccusage is host-scoped: installed where the development aspect's
+      # claude-code statusline is used.
+      home.packages = [ pkgs.unstable.ccusage ];
 
       # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
       home.stateVersion = "23.11";

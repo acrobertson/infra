@@ -13,6 +13,11 @@ let
   pequodHost = config.flake.darwinConfigurations.pequod.config;
   pequodHome = pequodHost.home-manager.users.alecrobertson;
 
+  dragulaHost = config.flake.darwinConfigurations.dragula.config;
+  dragulaHome = dragulaHost.home-manager.users.alecrobertson;
+
+  packageNames = map (p: p.pname or "");
+
   assertionsByName = {
     hodor-host-integrated-home = {
       assertion =
@@ -66,6 +71,23 @@ let
         && pequodHome.programs.git.signing.signer or "" == macSigner
         && (pequodHome.services.colima.enable or false);
       message = "pequod's integrated home must keep its darwin user environment";
+    };
+    dragula-host-integrated-home = {
+      assertion =
+        dragulaHome.home.username or "" == "alecrobertson"
+        && dragulaHome.home.homeDirectory or "" == "/Users/alecrobertson"
+        && !(dragulaHome.programs.claude-code.enable or true);
+      message = "dragula must activate an integrated Home Manager home for alecrobertson without claude-code";
+    };
+    dragula-no-ccusage = {
+      assertion = !builtins.elem "ccusage" (packageNames (dragulaHome.home.packages or [ ]));
+      message = "dragula must not install ccusage (host-scoped package)";
+    };
+    ccusage-host-scoped = {
+      assertion =
+        builtins.elem "ccusage" (packageNames (hodorHm.home.packages or [ ]))
+        && builtins.elem "ccusage" (packageNames (pequodHome.home.packages or [ ]));
+      message = "hodor and pequod must still install ccusage after moving it to host fragments";
     };
     hodor-wsl-tarball-output = {
       assertion =

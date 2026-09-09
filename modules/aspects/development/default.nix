@@ -167,7 +167,8 @@
           pandoc
           skills
           timewarrior
-          unstable.ccusage
+          # unstable.ccusage is host-scoped: installed only on hosts that run
+          # the claude-code statusline (see the host aspect fragments).
         ];
 
         xdg.configFile."task/hooks" = {

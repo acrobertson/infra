@@ -1,11 +1,11 @@
 { den, ... }:
 
 {
-  den.hosts.aarch64-darwin.pequod = {
+  den.hosts.aarch64-darwin.dragula = {
     users.alecrobertson = { };
   };
 
-  den.aspects.pequod = {
+  den.aspects.dragula = {
     includes = [
       den.aspects.platform-defaults
       den.aspects.darwin-home
@@ -39,4 +39,18 @@
       };
     };
   };
+
+  den.aspects.alecrobertson.provides.dragula.homeManager =
+    { lib, ... }:
+    {
+      # dragula runs no claude-code: the development aspect's plugins,
+      # settings, and statusline all disable with the program. ccusage is
+      # host-scoped and simply absent from this fragment.
+      programs.claude-code.enable = lib.mkForce false;
+
+      programs.home-manager.enable = true;
+
+      # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+      home.stateVersion = "26.05";
+    };
 }
