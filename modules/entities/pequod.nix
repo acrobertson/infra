@@ -19,8 +19,24 @@
             autoMigrate = true;
           };
         }
-        inputs.home-manager.darwinModules.home-manager
       ];
+
+      home-manager = {
+        useUserPackages = true;
+        # Back up colliding dotfiles on the first switch after migrating away
+        # from the standalone home (docs/runbooks/pequod-hm-migration.md).
+        backupFileExtension = "backup";
+
+        users.alecrobertson =
+          { osConfig, ... }:
+          {
+            # Den's unfree battery resolves with class "user" in host-user
+            # contexts and emits only to the OS class, so the integrated
+            # home's own pkgs (useGlobalPkgs is false) never see the
+            # allowlist. Mirror it from the host.
+            unfree.packages = osConfig.unfree.packages or [ ];
+          };
+      };
 
       homebrew = {
         enable = true;

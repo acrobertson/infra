@@ -2,10 +2,7 @@
 
 {
   den.hosts.x86_64-linux.hodor = {
-    users.alecrobertson.classes = [
-      "user"
-      "homeManager"
-    ];
+    users.alecrobertson = { };
 
     # Den's wsl battery imports inputs.nixos-wsl.nixosModules.default.
     wsl.enable = true;

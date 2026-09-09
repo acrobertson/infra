@@ -1,8 +1,6 @@
 { den, ... }:
 
 {
-  den.homes.aarch64-darwin."alecrobertson@pequod" = { };
-
   den.aspects.alecrobertson.provides.pequod.homeManager = {
     programs.home-manager.enable = true;
 

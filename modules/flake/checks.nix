@@ -11,7 +11,7 @@ let
   macSigner = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
 
   pequodHost = config.flake.darwinConfigurations.pequod.config;
-  pequodHome = config.flake.homeConfigurations."alecrobertson@pequod".config;
+  pequodHome = pequodHost.home-manager.users.alecrobertson;
 
   assertionsByName = {
     hodor-host-integrated-home = {
@@ -40,6 +40,16 @@ let
         && !(hodorHm.services.colima.enable or false);
       message = "hodor's integrated home must be free of darwin-only configuration (karabiner, ghostty, 1Password plugins, gh stub, macOS signer)";
     };
+    pequod-host-integrated-home = {
+      assertion =
+        pequodHome.home.username or "" == "alecrobertson"
+        && pequodHome.home.homeDirectory or "" == "/Users/alecrobertson";
+      message = "pequod must activate an integrated Home Manager home for alecrobertson at /Users/alecrobertson";
+    };
+    no-standalone-homes = {
+      assertion = (config.flake.homeConfigurations or { }) == { };
+      message = "the flake must publish no standalone homeConfigurations after the host-integrated migration (ADR-0004)";
+    };
     pequod-linux-builder = {
       assertion =
         (pequodHost.nix.linux-builder.enable or false)
@@ -55,7 +65,7 @@ let
         && pequodHome.programs.gh.package.name or "" == "empty-directory"
         && pequodHome.programs.git.signing.signer or "" == macSigner
         && (pequodHome.services.colima.enable or false);
-      message = "pequod's standalone home must keep its darwin user environment";
+      message = "pequod's integrated home must keep its darwin user environment";
     };
     hodor-wsl-tarball-output = {
       assertion =
