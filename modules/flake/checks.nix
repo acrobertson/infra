@@ -53,7 +53,7 @@ let
     };
     no-standalone-homes = {
       assertion = (config.flake.homeConfigurations or { }) == { };
-      message = "the flake must publish no standalone homeConfigurations after the host-integrated migration (ADR-0004)";
+      message = "the flake must publish no standalone homeConfigurations after the host-integrated migration";
     };
     pequod-linux-builder = {
       assertion =

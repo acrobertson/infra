@@ -40,7 +40,7 @@
     };
   };
 
-  # Host-scoped Home Manager user config, activated with the host (ADR-0004).
+  # Host-scoped Home Manager user config, activated with the host.
   den.aspects.alecrobertson.provides.pequod.homeManager =
     { pkgs, ... }:
     {

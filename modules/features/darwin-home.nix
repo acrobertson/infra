@@ -1,15 +1,14 @@
 { ... }:
 
 {
-  # Shared darwin host-integrated Home Manager wiring (ADR-0004). Den injects
-  # the home-manager darwin module itself once a host user has the
+  # Shared darwin host-integrated Home Manager wiring.
+  # Den injects the home-manager darwin module itself once a host user has the
   # "homeManager" class; this aspect contributes the shared module settings.
   # The options below only exist because of that injection, so they require at
   # least one host user with the class.
   den.aspects.darwin-home.darwin.home-manager = {
     useUserPackages = true;
     # Back up colliding dotfiles on a host's first integrated-home switch
-    # (see docs/runbooks/pequod-hm-migration.md for the pequod migration).
     backupFileExtension = "backup";
 
     users.alecrobertson =

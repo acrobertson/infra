@@ -38,7 +38,7 @@
     };
   };
 
-  # WSL-scoped Home Manager fragments, activated with the host (ADR-0004).
+  # WSL-scoped Home Manager fragments, activated with the host.
   # Ghostty is not viable under WSLg (ghostty-org/ghostty#11647); the WSL
   # terminal is Windows Terminal against the fish shell.
   den.aspects.alecrobertson.provides.hodor.homeManager =

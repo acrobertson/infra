@@ -28,7 +28,7 @@ in
       { pkgs, ... }:
       {
         # Durable local builder for aarch64-linux and Rosetta-translated
-        # x86_64-linux builds (ADR-0005). The VZ backend is not on the 26.05
+        # x86_64-linux builds. The VZ backend isn't on the 26.05
         # release line yet, so take it from the pinned unstable input.
         nix = nixSettings // {
           linux-builder = {
