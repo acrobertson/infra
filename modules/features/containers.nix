@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ ... }:
 
 {
   den.aspects.containers.homeManager =
