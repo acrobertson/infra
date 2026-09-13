@@ -43,9 +43,6 @@
   den.aspects.alecrobertson.provides.dragula.homeManager =
     { lib, ... }:
     {
-      # dragula runs no claude-code: the development aspect's plugins,
-      # settings, and statusline all disable with the program. ccusage is
-      # host-scoped and simply absent from this fragment.
       programs.claude-code.enable = lib.mkForce false;
 
       programs.home-manager.enable = true;
