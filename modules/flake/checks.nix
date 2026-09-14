@@ -75,19 +75,18 @@ let
     dragula-host-integrated-home = {
       assertion =
         dragulaHome.home.username or "" == "alecrobertson"
-        && dragulaHome.home.homeDirectory or "" == "/Users/alecrobertson"
-        && !(dragulaHome.programs.claude-code.enable or true);
-      message = "dragula must activate an integrated Home Manager home for alecrobertson without claude-code";
+        && dragulaHome.home.homeDirectory or "" == "/Users/alecrobertson";
+      message = "dragula must activate an integrated Home Manager home for alecrobertson at /Users/alecrobertson";
     };
-    dragula-no-ccusage = {
-      assertion = !builtins.elem "ccusage" (packageNames (dragulaHome.home.packages or [ ]));
-      message = "dragula must not install ccusage (host-scoped package)";
-    };
-    ccusage-host-scoped = {
+    claude-code-and-ccusage-are-pequod-only = {
       assertion =
-        builtins.elem "ccusage" (packageNames (hodorHm.home.packages or [ ]))
-        && builtins.elem "ccusage" (packageNames (pequodHome.home.packages or [ ]));
-      message = "hodor and pequod must still install ccusage after moving it to host fragments";
+        (pequodHome.programs.claude-code.enable or false)
+        && builtins.elem "ccusage" (packageNames (pequodHome.home.packages or [ ]))
+        && !(dragulaHome.programs.claude-code.enable or false)
+        && !builtins.elem "ccusage" (packageNames (dragulaHome.home.packages or [ ]))
+        && !(hodorHm.programs.claude-code.enable or false)
+        && !builtins.elem "ccusage" (packageNames (hodorHm.home.packages or [ ]));
+      message = "claude-code and ccusage must be enabled and installed on pequod only";
     };
     hodor-wsl-tarball-output = {
       assertion =
@@ -99,9 +98,7 @@ let
       message = "the hodor WSL tarball must be published as packages.x86_64-linux.hodor-wsl-tarball with mainProgram nixos-wsl-tarball-builder";
     };
     hodor-unfree-allowlist = {
-      assertion =
-        builtins.elem "claude-code" (hodorHm.unfree.packages or [ ])
-        && builtins.elem "1password-cli" (hodorHm.unfree.packages or [ ]);
+      assertion = builtins.elem "1password-cli" (hodorHm.unfree.packages or [ ]);
       message = "hodor's integrated home must inherit the host's unfree allowlist (the unfree battery only emits to the OS class in host-user contexts)";
     };
   };

@@ -45,7 +45,6 @@
     { lib, ... }:
     {
       programs.home-manager.enable = true;
-      programs.claude-code.enable = lib.mkForce false;
       programs.ghostty.enable = lib.mkForce false;
 
       # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

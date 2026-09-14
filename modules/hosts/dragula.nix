@@ -41,10 +41,8 @@
   };
 
   den.aspects.alecrobertson.provides.dragula.homeManager =
-    { lib, ... }:
+    { ... }:
     {
-      programs.claude-code.enable = lib.mkForce false;
-
       programs.home-manager.enable = true;
 
       # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
