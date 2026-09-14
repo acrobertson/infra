@@ -152,28 +152,13 @@
           };
         };
 
-        programs.taskwarrior = {
-          enable = true;
-          package = pkgs.taskwarrior3;
-          config = {
-            hooks.location = "~/.config/task/hooks";
-          };
-        };
-
         home.packages = with pkgs; [
           agent-browser
           nixfmt
           nodejs
           pandoc
           skills
-          timewarrior
         ];
-
-        xdg.configFile."task/hooks" = {
-          recursive = true;
-          source = ./hooks;
-          executable = true;
-        };
       };
   };
 }
