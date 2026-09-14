@@ -3,7 +3,8 @@
 {
   flake.overlays.unstable-pkgs = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      inherit (final) system config;
+      inherit (final) config;
+      system = final.stdenv.hostPlatform.system;
     };
   };
 }
