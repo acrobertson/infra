@@ -108,6 +108,43 @@
               ponytailPlugin
             ];
 
+            hooks = {
+              op-gh-credentials =
+                # sh
+                ''
+                  #!/usr/bin/env bash
+                  # PreToolUse hook: wrap `gh` Bash commands with `op run` to inject
+                  # GH_TOKEN from 1Password. Override the secret ref with OP_GH_TOKEN_REF.
+                  set -uo pipefail
+
+                  command -v jq >/dev/null || exit 0
+                  command -v op >/dev/null || exit 0
+
+                  input=$(cat)
+                  read -r tool_name cmd < <(
+                    jq -r '[.tool_name, (.tool_input.command // "")] | @tsv' <<<"$input"
+                  ) || exit 0
+
+                  [[ $tool_name == Bash ]] || exit 0
+
+                  # Rewrite only bare `gh` invocations that aren't already op-wrapped.
+                  gh_re='(^|[[:space:];&|(])gh([[:space:]]|$)'
+                  op_re='(^|[[:space:];&|(])op[[:space:]]+(run|plugin)'
+                  [[ $cmd =~ $gh_re && ! $cmd =~ $op_re ]] || exit 0
+
+                  ref=''${OP_GH_TOKEN_REF:-op://Private/naklywt4nwbp672uabfwmgwnte/token}
+                  new_cmd=$(printf 'GH_TOKEN=%q op run -- bash -c %q' "$ref" "$cmd")
+
+                  jq -nc --arg cmd "$new_cmd" '{
+                    hookSpecificOutput: {
+                      hookEventName: "PreToolUse",
+                      permissionDecision: "allow",
+                      updatedInput: { command: $cmd }
+                    }
+                  }'
+                '';
+            };
+
             settings = {
               # Disable unneeded features to trim system prompt
               disableBundledSkills = true;
@@ -118,6 +155,20 @@
               autoCompactEnabled = false;
               editorMode = "vim";
               effortLevel = "medium";
+              hooks = {
+                PreToolUse = [
+                  {
+                    matcher = "Bash";
+                    hooks = [
+                      {
+                        type = "command";
+                        command = "~/.claude/hooks/op-gh-credentials";
+                        timeout = 5;
+                      }
+                    ];
+                  }
+                ];
+              };
               model = "claude-opus-5";
               outputStyle = "Concise";
               permissions = {
