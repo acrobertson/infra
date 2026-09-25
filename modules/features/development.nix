@@ -169,7 +169,7 @@
                   }
                 ];
               };
-              model = "claude-opus-5";
+              model = "claude-opus-5-5";
               outputStyle = "Concise";
               permissions = {
                 allow = [
@@ -199,6 +199,7 @@
                   "Read(./build)"
                   "Read(./dist)"
                 ];
+                defaultMode = "auto";
                 disableBypassPermissionsMode = "disable";
               };
               spinnerTipsEnabled = false;
