@@ -13,6 +13,7 @@
     darwin.homebrew = {
       brews = [ "displayplacer" ];
       casks = [
+        "mikker/tap/dinky"
         "figma"
         "handy"
         "karabiner-elements"
