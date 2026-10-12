@@ -20,7 +20,12 @@
             :held 500}}
 
  ;; define devices
- :devices {:built_in_kbd [{:vendor_id 1452 :product_id 835}]}
+ :devices {:built_in_kbd [;; dragula built-in keyboard
+                          {:vendor_id 1452 :product_id 33028}
+                          ;; dragula touch bar
+                          {:vendor_id 1452 :product_id 34304}
+                          ;; pequod built-in keyboard
+                          {:vendor_id 1452 :product_id 835}]}
 
  ;; define tos
  ;; use in <to>
