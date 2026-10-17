@@ -35,6 +35,10 @@
           ]
         );
 
+        xdg.configFile."dinky/dinky.toml".source = lib.mkIf pkgs.stdenv.isDarwin {
+          source = ./dinky.toml;
+        };
+
         xdg.configFile."karabiner.edn" = lib.mkIf pkgs.stdenv.isDarwin {
           source = ./karabiner.edn;
           onChange = "${pkgs.goku}/bin/goku";
