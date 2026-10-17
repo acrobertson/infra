@@ -8,6 +8,7 @@
   den.aspects.pequod = {
     includes = [
       den.aspects.platform-defaults
+      den.aspects.networking
       den.aspects.darwin-home
       den.aspects.darwin-homebrew
     ];
