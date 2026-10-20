@@ -35,7 +35,7 @@
           ]
         );
 
-        xdg.configFile."dinky/dinky.toml".source = lib.mkIf pkgs.stdenv.isDarwin {
+        xdg.configFile."dinky/dinky.toml" = lib.mkIf pkgs.stdenv.isDarwin {
           source = ./dinky.toml;
         };
 
