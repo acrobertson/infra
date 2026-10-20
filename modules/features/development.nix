@@ -139,13 +139,6 @@
             };
 
             settings = {
-              # Disable unneeded features to trim system prompt
-              disableBundledSkills = true;
-              disableWorkflows = true;
-              disableRemoteControl = true;
-              disableArtifact = true;
-
-              autoCompactEnabled = false;
               editorMode = "vim";
               effortLevel = "medium";
               hooks = {
