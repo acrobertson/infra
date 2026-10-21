@@ -31,6 +31,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    basecamp-cli = {
+      url = "github:basecamp/basecamp-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     neovim-config = {
       url = "github:acrobertson/neovim-config";
       inputs.nixpkgs.follows = "nixpkgs";

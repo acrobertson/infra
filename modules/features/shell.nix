@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   den.aspects.shell = {
@@ -175,5 +175,11 @@
     };
 
     nixos.programs.fish.enable = true;
+
+    provides.pequod.homeManager =
+      { pkgs, ... }:
+      {
+        home.packages = [ inputs.basecamp-cli.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      };
   };
 }
