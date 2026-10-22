@@ -20,10 +20,8 @@
             :held 500}}
 
  ;; define devices
- :devices {:built_in_kbd [;; dragula built-in keyboard
-                          {:vendor_id 1452 :product_id 33028}
-                          ;; pequod built-in keyboard
-                          {:vendor_id 1452 :product_id 835}]}
+ ;; match any built-in keyboard, regardless of host.
+ :devices {:built_in_kbd [{:is_built_in_keyboard true}]}
 
  ;; define tos
  ;; use in <to>
