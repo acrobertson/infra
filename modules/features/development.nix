@@ -1,5 +1,22 @@
 { den, inputs, ... }:
 
+let
+  # Agents' Bash tools don't get the `op plugin` gh wrapper, so unlock a
+  # GH_TOKEN once per session instead of once per call. WSL has no Linux `op`;
+  # Windows' op.exe unlocks through Windows Hello instead.
+  withGhToken = cmd: ref: {
+    description = "Run ${cmd} with GH_TOKEN from 1Password";
+    wraps = cmd;
+    body =
+      # fish
+      ''
+        set -l op op
+        type -q op.exe; and set op op.exe
+        set -lx GH_TOKEN ($op read "${ref}"); or return
+        command ${cmd} $argv
+      '';
+  };
+in
 {
   den.aspects.development = {
     homeManager =
@@ -19,6 +36,9 @@
             "nvim-test"
           ];
         };
+
+        # Personal repos only, so personal harnesses can't reach work orgs.
+        programs.fish.functions.opencode = withGhToken "opencode" "op://Agents/Coding Agents GH token/token";
 
         programs.opencode = {
           enable = true;
@@ -92,6 +112,9 @@
           };
         in
         {
+          # Classic token: Claude is used for work across both company orgs.
+          programs.fish.functions.claude = withGhToken "claude" "op://Claude/Claude GitHub Personal Access Token/token";
+
           programs.claude-code = {
             enable = true;
 
@@ -102,60 +125,9 @@
               inputs.basecamp-cli
             ];
 
-            hooks = {
-              op-gh-credentials =
-                # sh
-                ''
-                  #!/usr/bin/env bash
-                  # PreToolUse hook: wrap `gh` Bash commands with `op run` to inject
-                  # GH_TOKEN from 1Password. Override the secret ref with OP_GH_TOKEN_REF.
-                  set -uo pipefail
-
-                  command -v jq >/dev/null || exit 0
-                  command -v op >/dev/null || exit 0
-
-                  input=$(cat)
-                  read -r tool_name cmd < <(
-                    jq -r '[.tool_name, (.tool_input.command // "")] | @tsv' <<<"$input"
-                  ) || exit 0
-
-                  [[ $tool_name == Bash ]] || exit 0
-
-                  # Rewrite only bare `gh` invocations that aren't already op-wrapped.
-                  gh_re='(^|[[:space:];&|(])gh([[:space:]]|$)'
-                  op_re='(^|[[:space:];&|(])op[[:space:]]+(run|plugin)'
-                  [[ $cmd =~ $gh_re && ! $cmd =~ $op_re ]] || exit 0
-
-                  ref=''${OP_GH_TOKEN_REF:-op://Private/naklywt4nwbp672uabfwmgwnte/token}
-                  new_cmd=$(printf 'GH_TOKEN=%q op run -- bash -c %q' "$ref" "$cmd")
-
-                  jq -nc --arg cmd "$new_cmd" '{
-                    hookSpecificOutput: {
-                      hookEventName: "PreToolUse",
-                      permissionDecision: "allow",
-                      updatedInput: { command: $cmd }
-                    }
-                  }'
-                '';
-            };
-
             settings = {
               editorMode = "vim";
               effortLevel = "medium";
-              hooks = {
-                PreToolUse = [
-                  {
-                    matcher = "Bash";
-                    hooks = [
-                      {
-                        type = "command";
-                        command = "~/.claude/hooks/op-gh-credentials";
-                        timeout = 5;
-                      }
-                    ];
-                  }
-                ];
-              };
               model = "claude-opus-5-5";
               outputStyle = "Concise";
               permissions = {
