@@ -99,6 +99,7 @@
 
             plugins = [
               ponytailPlugin
+              inputs.basecamp-cli
             ];
 
             hooks = {
