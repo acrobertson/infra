@@ -19,7 +19,6 @@
         "karabiner-elements"
         "polypane"
         "slack"
-        "ungoogled-chromium"
       ];
     };
 
