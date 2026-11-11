@@ -21,6 +21,9 @@ in
   den.aspects.development = {
     homeManager =
       { pkgs, ... }:
+      let
+        plannotatorPkg = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.plannotator;
+      in
       {
         imports = [ inputs.neovim-config.homeModule ];
 
@@ -54,6 +57,15 @@ in
           package = pkgs.unstable.opencode;
           settings = {
             formatter = true;
+            plugins = [
+              {
+                package = "@plannotator/opencode@${plannotatorPkg.version}";
+                options = {
+                  workflow = "plan-agent";
+                  planningAgents = [ "plan" ];
+                };
+              }
+            ];
             # lsp = {
             #   "intelephense" = {
             #     command = [ "intelephense" ];
@@ -93,6 +105,7 @@ in
           nixfmt
           nodejs
           pandoc
+          plannotatorPkg
           skills
         ];
       };
@@ -110,6 +123,16 @@ in
             tag = "v4.9.0";
             hash = "sha256-8cYggVltBAlZ/Zj4pl1bOu7mQdZFXCmDGW4RSpvRA+w=";
           };
+
+          plannotatorPkg = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.plannotator;
+
+          # Claude Code plugin from the same source tree the CLI is built
+          # from, so plugin and binary versions can't drift apart.
+          plannotatorClaudePlugin =
+            pkgs.runCommand "plannotator-claude-plugin-${plannotatorPkg.version}" { }
+              ''
+                cp -r ${plannotatorPkg.src}/apps/hook $out
+              '';
         in
         {
           # Classic token: Claude is used for work across both company orgs.
@@ -122,6 +145,7 @@ in
 
             plugins = [
               ponytailPlugin
+              plannotatorClaudePlugin
               inputs.basecamp-cli
             ];
 
