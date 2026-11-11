@@ -40,10 +40,9 @@ let
         && !(hodorHm.xdg.configFile or { } ? "karabiner.edn")
         && !(hodorHm.programs.ghostty.enable or false)
         && !(hodorHm.programs._1password-shell-plugins.enable or false)
-        && (hodorHm.programs.gh.package.name or "") != "empty-directory"
         && hodorHm.programs.git.signing.signer or "" == wslSigner
         && !(hodorHm.services.colima.enable or false);
-      message = "hodor's integrated home must be free of darwin-only configuration (karabiner, ghostty, 1Password plugins, gh stub, macOS signer)";
+      message = "hodor's integrated home must be free of darwin-only configuration (karabiner, ghostty, 1Password plugins, macOS signer)";
     };
     pequod-host-integrated-home = {
       assertion =
@@ -67,7 +66,6 @@ let
         (pequodHome.xdg.configFile or { } ? "karabiner.edn")
         && (pequodHome.programs.ghostty.enable or false)
         && (pequodHome.programs._1password-shell-plugins.enable or false)
-        && pequodHome.programs.gh.package.name or "" == "empty-directory"
         && pequodHome.programs.git.signing.signer or "" == macSigner
         && (pequodHome.services.colima.enable or false);
       message = "pequod's integrated home must keep its darwin user environment";

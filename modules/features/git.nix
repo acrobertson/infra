@@ -21,10 +21,6 @@
 
         programs.gh = {
           enable = true;
-          # On macOS gh comes wrapped by the 1Password GUI install; only
-          # configure it here. Elsewhere install a real gh.
-          # see https://github.com/nix-community/home-manager/issues/4763
-          package = if pkgs.stdenv.isDarwin then pkgs.emptyDirectory else pkgs.gh;
           settings = {
             git_protocol = "ssh";
           };
