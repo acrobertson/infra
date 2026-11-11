@@ -40,7 +40,14 @@
             [
               keymapp
               raycast
-              shortcat
+              # dontStrip: shortcat uses plain stdenv, so fixup strips the app
+              # binary and Nix re-signs it ad-hoc, breaking the upstream
+              # Developer ID signature (re-prompts TCC permissions on every
+              # rebuild). keymapp/raycast are already guarded (stdenvNoCC /
+              # dontFixup in nixpkgs).
+              (shortcat.overrideAttrs (_: {
+                dontStrip = true;
+              }))
             ]
           )
           ++ lib.optionals (!isWsl) [
