@@ -56,7 +56,7 @@
             # (which gets replaced by an ad-hoc one). Skipping the strip keeps
             # the imput LLC signature + notarization intact, which 1Password
             # requires for its browser integration.
-            (inputs.helium.packages.${pkgs.system}.default.overrideAttrs (_: {
+            (inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (_: {
               dontStrip = true;
             }))
           ];
