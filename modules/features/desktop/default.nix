@@ -44,7 +44,14 @@
             ]
           )
           ++ lib.optionals (!isWsl) [
-            inputs.helium.packages.${pkgs.system}.default
+            # dontStrip: Nix's fixup phase strips Mach-O binaries under
+            # Applications/, invalidating the upstream Developer ID signature
+            # (which gets replaced by an ad-hoc one). Skipping the strip keeps
+            # the imput LLC signature + notarization intact, which 1Password
+            # requires for its browser integration.
+            (inputs.helium.packages.${pkgs.system}.default.overrideAttrs (_: {
+              dontStrip = true;
+            }))
           ];
 
         xdg.configFile."dinky/dinky.toml" = lib.mkIf pkgs.stdenv.isDarwin {
