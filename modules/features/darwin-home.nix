@@ -25,6 +25,12 @@
         # every activation. Pin man-db explicitly; it provides mandb(8),
         # which is what the cache generation actually runs.
         programs.man.package = pkgs.man;
+
+        # Copy apps into ~/Applications/Home Manager Apps instead of symlinking
+        # into /nix/store (the default only for stateVersion >= 25.11, so
+        # pequod's 23.11 home still links).
+        targets.darwin.copyApps.enable = true;
+        targets.darwin.linkApps.enable = false;
       };
   };
 }
