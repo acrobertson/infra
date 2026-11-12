@@ -51,13 +51,14 @@
             ]
           )
           ++ lib.optionals (!isWsl) [
-            # dontStrip: Nix's fixup phase strips Mach-O binaries under
-            # Applications/, invalidating the upstream Developer ID signature
-            # (which gets replaced by an ad-hoc one). Skipping the strip keeps
-            # the imput LLC signature + notarization intact, which 1Password
-            # requires for its browser integration.
+            # dontFixup: Nix's fixup phase strips Mach-O binaries and patches
+            # shebangs (e.g. the framework's Resources/install.sh); both break
+            # the upstream Developer ID signature's sealed resources, and
+            # Gatekeeper then reports the app as "damaged". Skipping fixup
+            # keeps the imput LLC signature + notarization intact, which
+            # 1Password also requires for its browser integration.
             (inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (_: {
-              dontStrip = true;
+              dontFixup = true;
             }))
           ];
 
