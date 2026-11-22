@@ -22,6 +22,7 @@ in
       den.aspects.terminal
       den.aspects.git
       den.aspects.development
+      den.aspects.ai
       den.aspects.containers
       den.aspects.desktop
       den.aspects.authentication
